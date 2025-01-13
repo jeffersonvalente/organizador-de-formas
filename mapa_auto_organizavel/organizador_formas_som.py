@@ -20,7 +20,7 @@ SQUARE_COLOR = (255, 0, 255)
 
 # Configurações das entradas
 NUM_TIPOS = 3  # Triângulo, Círculo, Quadrado
-NUM_ENTRADAS = 40  # Por tipo
+NUM_ENTRADAS = 15  # Por tipo
 entradas = []
 agrupadas = {0: [], 1: [], 2: []}  # Para armazenar as posições agrupadas
 
