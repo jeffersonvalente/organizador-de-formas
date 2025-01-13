@@ -67,4 +67,4 @@ A cada iteração:
 Contribuições são bem-vindas! Sugestões e melhorias podem ser enviadas através de pull requests ou issues.
 
 ## 📢 Contato
-Para dúvidas ou sugestões, entre em contato pelo [LinkedIn](https://www.linkedin.com/in/jefferson-hoy-valente-7352a0156/)]
+Para dúvidas ou sugestões, entre em contato pelo [LinkedIn](https://www.linkedin.com/in/jefferson-hoy-valente-7352a0156/)
