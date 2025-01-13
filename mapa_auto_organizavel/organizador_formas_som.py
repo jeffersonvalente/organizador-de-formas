@@ -24,6 +24,16 @@ NUM_ENTRADAS = 10  # Por tipo
 entradas = []
 agrupadas = {0: [], 1: [], 2: []}  # Para armazenar as posições agrupadas
 
+# Posições fixas para empilhamento
+posicoes_agrupamento = {
+    0: (200, HEIGHT // 2),  # Triângulos
+    1: (400, HEIGHT // 2),  # Círculos
+    2: (600, HEIGHT // 2),  # Quadrados
+}
+
+# Ponto inicial para organização
+ponto_inicial = (50, HEIGHT // 2)
+
 # Gera entradas iniciais em posições aleatórias
 def gerar_entradas():
     for tipo in range(NUM_TIPOS):
@@ -45,19 +55,18 @@ som = MiniSom(10, 10, 3, sigma=1.0, learning_rate=0.5)
 som.random_weights_init(normalized_data)
 
 # Treina o SOM antes de iniciar o loop
-som.train(normalized_data, num_iteration=100)
-
-# Mapeia os vencedores para posições agrupadas
-for entrada in entradas:
-    tipo = entrada["tipo"]
-    posicao_normalizada = np.array([entrada["x"], entrada["y"], tipo]) / np.max(data, axis=0)
-    vencedor = som.winner(posicao_normalizada)
-    x = int((vencedor[0] / 10) * WIDTH)
-    y = int((vencedor[1] / 10) * HEIGHT)
-    agrupadas[tipo].append((x, y))
+som.train(normalized_data, num_iteration=1000)
 
 # Inicializa o bonequinho
-boneco = {"x": WIDTH // 2, "y": HEIGHT // 2, "carregando": None, "destino": None, "estado": "buscar", "alvo": None}
+boneco = {
+    "x": WIDTH // 2,
+    "y": HEIGHT // 2,
+    "carregando": None,
+    "destino": None,
+    "estado": "buscar",
+    "alvo": None,
+    "etapa": "para_inicial"  # Nova etapa para gerenciar o ponto inicial
+}
 
 # Função para mover o boneco para uma entrada ou destino
 def mover_boneco(destino):
@@ -66,6 +75,11 @@ def mover_boneco(destino):
 
     if abs(boneco["y"] - destino[1]) >= 2:
         boneco["y"] += 2 if boneco["y"] < destino[1] else -2
+
+    # Atualiza a posição do elemento carregado
+    if boneco["carregando"] is not None:
+        boneco["carregando"]["x"] = boneco["x"]
+        boneco["carregando"]["y"] = boneco["y"] - 20
 
 # Função para desenhar as entradas
 def desenhar_entradas():
@@ -84,14 +98,17 @@ def desenhar_entradas():
 def desenhar_agrupados():
     for tipo, elementos in agrupadas.items():
         color = [TRIANGLE_COLOR, CIRCLE_COLOR, SQUARE_COLOR][tipo]
-        for x, y in elementos:
+        base_x, base_y = posicoes_agrupamento[tipo]
+        for i, (x, y) in enumerate(elementos):
+            pos_x = base_x
+            pos_y = base_y - (i * 20)  # Empilha verticalmente
             if tipo == 0:  # Triângulo
-                pontos = [(x, y - 10), (x - 10, y + 10), (x + 10, y + 10)]
+                pontos = [(pos_x, pos_y - 10), (pos_x - 10, pos_y + 10), (pos_x + 10, pos_y + 10)]
                 pygame.draw.polygon(screen, color, pontos)
             elif tipo == 1:  # Círculo
-                pygame.draw.circle(screen, color, (x, y), 10)
+                pygame.draw.circle(screen, color, (pos_x, pos_y), 10)
             elif tipo == 2:  # Quadrado
-                pygame.draw.rect(screen, color, (x - 10, y - 10, 20, 20))
+                pygame.draw.rect(screen, color, (pos_x - 10, pos_y - 10, 20, 20))
 
 # Função para desenhar o elemento carregado pelo boneco
 def desenhar_carregando():
@@ -143,19 +160,25 @@ while rodando:
             boneco["carregando"] = boneco["alvo"]
             boneco["alvo"] = None
             boneco["estado"] = "levando_para_grupo"
-            tipo = boneco["carregando"]["tipo"]
-            if agrupadas[tipo]:  # Verifica se há posição agrupada
-                boneco["destino"] = agrupadas[tipo][0]
+            boneco["destino"] = ponto_inicial  # Primeiro vai para o ponto inicial
+            boneco["etapa"] = "para_inicial"
 
     elif boneco["estado"] == "levando_para_grupo":
-        # Move até o local de agrupamento
+        # Move o elemento para o ponto inicial ou grupo final
         mover_boneco(boneco["destino"])
         if abs(boneco["x"] - boneco["destino"][0]) < 2 and abs(boneco["y"] - boneco["destino"][1]) < 2:
-            tipo = boneco["carregando"]["tipo"]
-            agrupadas[tipo].append((boneco["destino"][0], boneco["destino"][1] + len(agrupadas[tipo]) * 20))
-            boneco["carregando"]["agrupado"] = True
-            boneco["carregando"] = None  # Solta o elemento
-            boneco["estado"] = "buscar"
+            if boneco["etapa"] == "para_inicial":
+                # Chegou ao ponto inicial, agora vai para o grupo final
+                tipo = boneco["carregando"]["tipo"]
+                boneco["destino"] = posicoes_agrupamento[tipo]
+                boneco["etapa"] = "para_grupo"
+            elif boneco["etapa"] == "para_grupo":
+                # Chegou ao grupo final
+                tipo = boneco["carregando"]["tipo"]
+                agrupadas[tipo].append((0, 0))  # Placeholder para renderização com lógica de empilhamento
+                boneco["carregando"]["agrupado"] = True
+                boneco["carregando"] = None  # Solta o elemento
+                boneco["estado"] = "buscar"
 
     # Desenha o bonequinho
     pygame.draw.circle(screen, BLACK, (boneco["x"], boneco["y"]), 10)
