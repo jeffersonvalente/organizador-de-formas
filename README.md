@@ -1,70 +1,90 @@
-# Organizador de Formas com SOM 🚀
 
-Simplifique a visualização de como algoritmos de redes neurais auto-organizáveis (Self-Organizing Maps - SOM) podem agrupar dados com eficiência. Este projeto combina inteligência artificial e animação interativa para demonstrar o processo de organização de formas geométricas.
+# Organizador de Formas com SOM — Visualização Interativa de Agrupamento com IA
 
-Seja para entender o funcionamento de SOMs ou para criar experiências interativas, esta ferramenta oferece uma abordagem prática e envolvente.
+Esse projeto mostra, de forma prática e animada, como algoritmos de redes neurais auto-organizáveis (SOM) conseguem agrupar dados com base em similaridade.  
+Aqui, formas geométricas são geradas aleatoriamente e organizadas por um boneco animado, que simula o processo de classificação e agrupamento.
 
-## 🛠 Funcionalidades
-- **Entradas Aleatórias:** Geração de triângulos, círculos e quadrados em posições aleatórias na tela.
-- **Organização com SOM:** Uso de um SOM treinado para determinar as posições agrupadas para cada tipo de forma.
-- **Boneco Interativo:** Um boneco busca, carrega e organiza cada forma nos locais designados.
-- **Empilhamento Visual:** Formas são empilhadas verticalmente no local designado para cada tipo, garantindo clareza visual.
+É uma forma direta de entender como SOMs funcionam — útil tanto pra aprender quanto pra ensinar.
 
-## 📋 Requisitos
-- **Python 3.8+**
-- Bibliotecas Python:
+---
+
+## 🎯 O que esse projeto faz
+
+- Gera **triângulos, círculos e quadrados** aleatoriamente na tela
+- Treina um **SOM (Self-Organizing Map)** para identificar agrupamentos
+- Um **boneco interativo** coleta e organiza as formas de acordo com seus grupos
+- Apresenta o resultado **de forma visual e animada**
+
+---
+
+## 🔧 Requisitos
+
+- Python 3.8 ou superior
+- Bibliotecas:
   - `pygame`
   - `numpy`
   - `minisom`
 
-## ⚙️ Instalação
+---
 
-1. Clone o repositório:
-   ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DO_REPOSITORIO>
-   ```
+## 🚀 Como rodar
+
+1. Clone o projeto:
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd <NOME_DO_REPOSITORIO>
+```
+
 2. Instale as dependências:
-   ```bash
-   pip install pygame numpy minisom
-   ```
 
-## ▶️ Como Executar
+```bash
+pip install pygame numpy minisom
+```
 
-1. Execute o script principal:
-   ```bash
-   python <nome_do_script>.py
-   ```
-2. Observe o boneco organizando as formas na tela de maneira animada e interativa!
+3. Execute o script principal:
 
-## 🧩 Como Funciona?
+```bash
+python <nome_do_script>.py
+```
 
-### Treinamento do SOM
-- O algoritmo SOM é treinado antes de iniciar a animação, utilizando 100 iterações para ajustar os pesos e definir os agrupamentos.
+---
 
-### Movimentação do Boneco
-1. **Busca de Formas:** O boneco identifica formas não agrupadas na tela.
-2. **Transporte:** Ele carrega a forma até o ponto inicial e, em seguida, para o local de agrupamento final.
-3. **Empilhamento:** Cada forma é empilhada verticalmente no local correspondente ao seu tipo.
+## 🧠 Como funciona
 
-### Renderização
-A cada iteração:
-- Formas não agrupadas são redesenhadas.
-- Formas agrupadas são empilhadas em seus locais designados.
-- O boneco e o elemento que ele está carregando são atualizados em tempo real.
+### Treinamento
+- O SOM é treinado com base nas características das formas.
+- São feitas 100 iterações para ajustar os pesos e definir os agrupamentos.
 
-## 🌟 Exemplos Práticos
-- **Visualização de Redes Neurais:** Explore como SOMs agrupam dados de maneira auto-organizável.
-- **Ferramenta Educacional:** Ideal para ensinar conceitos de IA e SOM de forma interativa.
-- **Simulações Interativas:** Demonstre como elementos podem ser agrupados em categorias específicas.
+### Animação
+- O boneco identifica uma forma desagrupada.
+- Leva até a área inicial e depois até a área designada pelo SOM.
+- Empilha visualmente conforme o tipo de forma.
 
-## 📈 Benefícios Técnicos
-- **Intuitivo e Visual:** Demonstração clara do funcionamento de redes neurais auto-organizáveis.
-- **Personalizável:** Permite ajustes no número de formas, iterações do SOM e comportamento do boneco.
-- **Didático:** Excelente para quem deseja aprender ou ensinar conceitos de SOM.
+---
 
-## 🤝 Contribuindo
-Contribuições são bem-vindas! Sugestões e melhorias podem ser enviadas através de pull requests ou issues.
+## 🌟 Aplicações práticas
 
-## 📢 Contato
-Para dúvidas ou sugestões, entre em contato pelo [LinkedIn](https://www.linkedin.com/in/jefferson-hoy-valente-7352a0156/)
+- **Didática**: Ideal para explicar visualmente como SOMs funcionam.
+- **Simulações interativas**: Agrupamento visual em tempo real.
+- **Exploração de IA visual**: Demonstração clara de agrupamento auto-organizado.
+
+---
+
+## 💡 Por que usar?
+
+Esse projeto traduz um conceito abstrato como redes neurais em algo que dá pra ver, mexer e entender.  
+É útil pra quem tá estudando IA, precisa explicar SOM de forma acessível ou quer explorar visualmente como algoritmos classificam dados.
+
+---
+
+## 🤝 Contribuições
+
+Sugestões são bem-vindas.  
+Se quiser melhorar a lógica, propor novas formas ou aumentar o nível de interatividade, manda um pull request ou issue.
+
+---
+
+## 📫 Contato
+
+[LinkedIn](https://www.linkedin.com/in/jefferson-hoy-valente/)
