@@ -8,26 +8,26 @@ Aqui, formas geométricas são geradas aleatoriamente e organizadas por um bonec
 
 ---
 
-## 🎯 O que esse projeto faz
+## O que esse projeto faz
 
-- Gera **triângulos, círculos e quadrados** aleatoriamente na tela
-- Treina um **SOM (Self-Organizing Map)** para identificar agrupamentos
-- Um **boneco interativo** coleta e organiza as formas de acordo com seus grupos
-- Apresenta o resultado **de forma visual e animada**
+- Gera triângulos, círculos e quadrados aleatoriamente na tela
+- Treina um SOM (Self-Organizing Map) para identificar agrupamentos
+- Um boneco interativo coleta e organiza as formas de acordo com seus grupos
+- Apresenta o resultado de forma visual e animada
 
 ---
 
-## 🔧 Requisitos
+## Requisitos
 
 - Python 3.8 ou superior
 - Bibliotecas:
-  - `pygame`
-  - `numpy`
-  - `minisom`
+  - pygame
+  - numpy
+  - minisom
 
 ---
 
-## 🚀 Como rodar
+## Como rodar
 
 1. Clone o projeto:
 
@@ -50,7 +50,7 @@ python <nome_do_script>.py
 
 ---
 
-## 🧠 Como funciona
+## Como funciona
 
 ### Treinamento
 - O SOM é treinado com base nas características das formas.
@@ -63,28 +63,28 @@ python <nome_do_script>.py
 
 ---
 
-## 🌟 Aplicações práticas
+## Aplicações práticas
 
-- **Didática**: Ideal para explicar visualmente como SOMs funcionam.
-- **Simulações interativas**: Agrupamento visual em tempo real.
-- **Exploração de IA visual**: Demonstração clara de agrupamento auto-organizado.
+- Didática: Ideal para explicar visualmente como SOMs funcionam.
+- Simulações interativas: Agrupamento visual em tempo real.
+- Exploração de IA visual: Demonstração clara de agrupamento auto-organizado.
 
 ---
 
-## 💡 Por que usar?
+## Por que usar?
 
 Esse projeto traduz um conceito abstrato como redes neurais em algo que dá pra ver, mexer e entender.  
 É útil pra quem tá estudando IA, precisa explicar SOM de forma acessível ou quer explorar visualmente como algoritmos classificam dados.
 
 ---
 
-## 🤝 Contribuições
+## Contribuições
 
 Sugestões são bem-vindas.  
 Se quiser melhorar a lógica, propor novas formas ou aumentar o nível de interatividade, manda um pull request ou issue.
 
 ---
 
-## 📫 Contato
+## Contato
 
-[LinkedIn](https://www.linkedin.com/in/jefferson-hoy-valente/)
+LinkedIn: https://www.linkedin.com/in/jefferson-hoy-valente/
